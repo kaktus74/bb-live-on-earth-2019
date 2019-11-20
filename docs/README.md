@@ -28,8 +28,8 @@
 
 
 ## Zanim zaczniemy...
- - [Poznaj GITa](before-we-start/know-git.md)
- - [Poznaj Pythona](before-we-start/know-python.md)
+ - [Poznaj GITa](docs/before-we-start/know-git.md)
+ - [Poznaj Pythona](docs/before-we-start/know-python.md)
 
 ## Członkowie zespołu
  
