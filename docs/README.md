@@ -30,14 +30,15 @@
 ## Członkowie zespołu - skille
 
 
-| Skill                      | Osoba 1 | Osoba 2 | Osoba 3 | Osoba 4 | Osoba 5 |
-|---                         |---      |---      |---      |---      |---      |
-|GIT: mam konto :)           |         |         |         |         |         |
-|GIT: umiem tworzyć Pull Request (PR)                 |         |         |         |         |         |
-|GIT: umiem zatwierdzać PR   |         |         |         |         |         |
-|Python: Mam zainstalowane środowisko :)                |         |         |         |         |         |
-|Python: Umiem wypisać `Hello World!` :)            |         |         |         |         |         |
-|TODO...|         |         |         |         |         |    
+| Skill | Osoba 1 | Osoba 2 | Osoba 3 | Osoba 4 | Osoba 5 |
+|---|---|---      |---      |---      |---      |
+| GIT: mam konto :)           |         |         |         |         |         |
+| GIT: umiem tworzyć Pull Request (PR)                 |         |         |         |         |         |
+| GIT: umiem zatwierdzać PR   |         |         |         |         |         |
+| Python: Mam zainstalowane środowisko :)                |         |         |         |         |         |
+| Python: Umiem wypisać `Hello World!` :)            |         |         |         |         |         |
+| TODO...|         |         |         |         |         |    
+
 ## Przydatne adresy
 
  - GIT Repo: `git@github.com:kaktus74/bb-live-on-earth-2019.git`
