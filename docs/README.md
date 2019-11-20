@@ -39,7 +39,7 @@
 # Przydatne adresy
 
  - GIT Repo: `git@github.com:kaktus74/bb-live-on-earth-2019.git`
-
+- Lekki i przyjemny samouczek Pythona: <https://www.flynerd.pl/tag/python-kurs>
 - [Ściągawka do Markdown (pliki *.md)](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - [Ściągawka do GIT](https://rogerdudler.github.io/git-guide/index.pl.html)
 - [Ściągawka z Pythona](https://python101.readthedocs.io/pl/latest/podstawy/index.html)
