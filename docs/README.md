@@ -27,7 +27,15 @@
 `Investigate health changes of the vegetation (mostly forests) during the last 10 years by comparing the computed NDVI based on the photos taken by Izzy to the historical NDVI values`
 
 
-## Członkowie zespołu - skille
+## Zanim zaczniemy...
+ - [Poznaj GITa](before-we-start/know-git.md)
+ - [Poznaj Pythona](before-we-start/know-python.md)
+
+## Członkowie zespołu
+ 
+TODO:
+ 
+## Skille zespołu
 
 
 | Skill | Osoba 1 | Osoba 2 | Osoba 3 | Osoba 4 | Osoba 5 |
@@ -43,6 +51,6 @@
 
  - GIT Repo: `git@github.com:kaktus74/bb-live-on-earth-2019.git`
 - Lekki i przyjemny samouczek Pythona: <https://www.flynerd.pl/tag/python-kurs>
-- [Ściągawka do Markdown (pliki *.md)](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- [Ściągawka do Markdown (pliki *.md)](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), PL: <https://pl.wikipedia.org/wiki/Markdown>
 - [Ściągawka do GIT](https://rogerdudler.github.io/git-guide/index.pl.html)
 - [Ściągawka z Pythona](https://python101.readthedocs.io/pl/latest/podstawy/index.html)
