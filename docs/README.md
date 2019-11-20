@@ -12,31 +12,33 @@
 /_/   \_\___/\__|_|  \___/  |_|   |_|   |_|\___|\__,_|_| |_| |_|
 ```
 
-# Ważne terminy
+## Ważne terminy
 
-## Faza 1 - Projekt (12.IX – 25.X.2019): zgłaszanie propozycji eksperymetnów
+### Faza 1 - Projekt (12.IX – 25.X.2019): zgłaszanie propozycji eksperymetnów
 
-## Faza 2 - Tworzenie (IX.2019 – 14.II.2020): kodowanie i testy eksperymentu na Ziemii
+### Faza 2 - Tworzenie (IX.2019 – 14.II.2020): kodowanie i testy eksperymentu na Ziemii
 
-## Faza 3 - Wdrożenie (III - IV.2020) - Program jest wdrożony do działania na ISS
+### Faza 3 - Wdrożenie (III - IV.2020) - Program jest wdrożony do działania na ISS
 
-## Faza 4 – Analiza (6-27.V.2020) - Przygotowanie raportu na podstawie zebranych danych
+### Faza 4 – Analiza (6-27.V.2020) - Przygotowanie raportu na podstawie zebranych danych
 
-# Temat eksperymentu
+## Temat eksperymentu
 
 `Investigate health changes of the vegetation (mostly forests) during the last 10 years by comparing the computed NDVI based on the photos taken by Izzy to the historical NDVI values`
 
 
-# Członkowie zespołu
+## Członkowie zespołu - skille
 
-- ?
-- ?
-- ?
-- ?
-- ?
-   
 
-# Przydatne adresy
+| Skill                      | Osoba 1 | Osoba 2 | Osoba 3 | Osoba 4 | Osoba 5 |
+|---                         |---      |---      |---      |---      |---      |
+|GIT: mam konto :)           |         |         |         |         |         |
+|GIT: umiem tworzyć Pull Request (PR)                 |         |         |         |         |         |
+|GIT: umiem zatwierdzać PR   |         |         |         |         |         |
+|Python: Mam zainstalowane środowisko :)                |         |         |         |         |         |
+|Python: Umiem wypisać `Hello World!` :)            |         |         |         |         |         |
+|TODO...|         |         |         |         |         |    
+## Przydatne adresy
 
  - GIT Repo: `git@github.com:kaktus74/bb-live-on-earth-2019.git`
 - Lekki i przyjemny samouczek Pythona: <https://www.flynerd.pl/tag/python-kurs>
