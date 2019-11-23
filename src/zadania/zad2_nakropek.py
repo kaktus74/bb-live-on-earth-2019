@@ -1,10 +1,10 @@
 import random
 from random import randint
-def kostka (ilosc_rzutow, liczba_scianek):
+def kostka (liczba_rzutow, liczba_scianek):
     suma = 0
-    for i in range (0, ilosc_rzutow):
-        x = randint (1, liczba_scianek)
-        print ('Wynik: ', x)
-        suma = suma + x
+    for proba in range (0, liczba_rzutow):
+        rzut = randint (1, liczba_scianek)
+        print ('Wynik: ', rzut)
+        suma = suma + rzut
     print ('Suma wyników to: ', suma)
     
