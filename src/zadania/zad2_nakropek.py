@@ -1,6 +1,6 @@
 import random
 from random import randint
-def main ():
+def roll_dice():
     liczba_scianek = int (input ('Ile ścianek ma twoja kostka? '))
     liczba_rzutow = int (input ('Ile razy chcesz rzucić? '))
     suma = 0
@@ -11,7 +11,7 @@ def main ():
     print ('Suma wyników to: ', suma)
 
 if __name__ == '__main__':
-    main ()
+    roll_dice ()
 
     
     
