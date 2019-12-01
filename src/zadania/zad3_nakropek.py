@@ -1,10 +1,22 @@
 import ephem
 import time
 from datetime import datetime, timezone
+import os
 from os.path import split
+from os.path import isdir
+import sys
 
 my_dir = split (__file__) [0]
+data_dir = '{0}/../../data/'.format (my_dir)
 t = datetime.now(timezone.utc)
+
+if isdir (data_dir) == False:
+    print ('Nie znaleziono folderu {0}. Zamierzam go stworzyć.'.format (data_dir))
+    os.mkdir (data_dir)
+else:
+    print ('Trwa zapisywanie pliku w folderze {0}'.format (data_dir))
+
+sys.stdout.flush()
 
 nazwa = 'ISS (ZARYA)'
 
