@@ -2,6 +2,7 @@ from picamera import PiCamera
 from datetime import datetime
 import time
 
+#todo
 cam =  PiCamera()
 
 cam.start_preview()
