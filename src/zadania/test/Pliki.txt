@@ -1,0 +1,86 @@
+Python 3.5.3 (default, Sep 27 2018, 17:25:39) 
+[GCC 6.3.0 20170516] on linux
+Type "copyright", "credits" or "license()" for more information.
+>>> 
+== RESTART: /home/mathie6/bb-live-on-earth-2019/src/zadania/zad3-mathie6.py ==
+2019-12-07 12:16:36.791384+00:00
+07-12-2019 12:16:36 15:42:10.7 128:59:11.3
+2019-12-07 12:16:37.844223+00:00
+07-12-2019 12:16:37 15:39:03.6 129:01:39.2
+2019-12-07 12:16:38.903031+00:00
+07-12-2019 12:16:38 15:35:55.3 129:04:07.9
+2019-12-07 12:16:39.964662+00:00
+07-12-2019 12:16:39 15:32:46.5 129:06:36.9
+2019-12-07 12:16:41.043175+00:00
+07-12-2019 12:16:41 15:29:34.6 129:09:08.2
+2019-12-07 12:16:42.112854+00:00
+07-12-2019 12:16:42 15:26:24.3 129:11:38.1
+2019-12-07 12:16:43.176103+00:00
+07-12-2019 12:16:43 15:23:15.2 129:14:07.1
+Traceback (most recent call last):
+  File "/home/mathie6/bb-live-on-earth-2019/src/zadania/zad3-mathie6.py", line 27, in <module>
+    time.sleep(1)
+KeyboardInterrupt
+>>> import os
+>>> os.mkdir("test")
+>>> os.getcwd()
+'/home/mathie6/bb-live-on-earth-2019/src/zadania'
+>>> os.setcwd("test")
+Traceback (most recent call last):
+  File "<pyshell#3>", line 1, in <module>
+    os.setcwd("test")
+AttributeError: module 'os' has no attribute 'setcwd'
+>>> os.chdir("test")
+>>> os.getcwd
+<built-in function getcwd>
+>>> os.getcwd()
+'/home/mathie6/bb-live-on-earth-2019/src/zadania/test'
+>>> plik = open("Zapiski u Leny")
+Traceback (most recent call last):
+  File "<pyshell#7>", line 1, in <module>
+    plik = open("Zapiski u Leny")
+FileNotFoundError: [Errno 2] No such file or directory: 'Zapiski u Leny'
+>>> plik = open("Zapiski u Leny.txt")
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    plik = open("Zapiski u Leny.txt")
+FileNotFoundError: [Errno 2] No such file or directory: 'Zapiski u Leny.txt'
+>>> plik = open("Zapiski u Leny.txt",w)
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    plik = open("Zapiski u Leny.txt",w)
+NameError: name 'w' is not defined
+>>> plik = open("Zapiski u Leny.txt","w")
+>>> plik.write("Pieski male dwa")
+15
+>>> plik.flush()
+>>> plik.close()
+>>> plik = open("Zapiski u Leny.txt","w")
+>>> plik = open("Zapiski u Leny.txt","w")
+>>> plik.write("Zegnamy Piotrka\n")
+16
+>>> plik.flush()
+>>> plik.write("I Lene tez\n")
+11
+>>> plik.flush
+<built-in method flush of _io.TextIOWrapper object at 0x75c30bb0>
+>>> plik.flush()
+>>> plik.write("Za maks 20 minut ide do domu\n")
+29
+>>> plik.flush()
+>>> plik.close()
+>>> pixele = """
+import sense_hat
+from time import sleep
+okienko = sense_hat.SenseHat()
+okienko.clear()
+for x in range(0,8):
+	okienko.set_pixel(x,x,134,58,200)
+	okienko.set_pixel(7-x,0+x,134,58,200)"""
+>>> pixele
+'\nimport sense_hat\nfrom time import sleep\nokienko = sense_hat.SenseHat()\nokienko.clear()\nfor x in range(0,8):\n\tokienko.set_pixel(x,x,134,58,200)\n\tokienko.set_pixel(7-x,0+x,134,58,200)'
+>>> plik = open("Pixele-na-rassbery.py","w")
+>>> plik.write(pixele)
+182
+>>> plik.flush()
+>>> 
