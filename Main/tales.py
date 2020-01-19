@@ -12,3 +12,5 @@ def co_ile (pole_widzenia_m, czas_obiegu_s = 5400, obwod_m = 40075000):
 def dl_maly_bok (dlugi_bok, aspekt = 16/9):
     maly_bok = dlugi_bok  / aspekt
     return maly_bok
+
+co_ile (dl_maly_bok (tales (0.56, 0.225))) / 2 #co ile robić zdjęcia

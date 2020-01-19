@@ -30,16 +30,15 @@ line2=''
 measured_distance = 0.56
 measured_fov = 0.225
 
-interval = co_ile (dl_maly_bok (tales (0.56, 0.225))) / 2
+interval = co_ile (dl_maly_bok (tales (measured_distance, measured_fov))) / 2
 
 #flight_duration = 180*60
 
-flight_duration = 60
+flight_duration = 15
 
 czas_trwania = datetime.now() - start
 while czas_trwania.total_seconds() < flight_duration:
     print('Obliczam pozycje i zapisuje razem ze zdjeciem')
-    time.sleep(1)
+    time.sleep(interval)
     print('Zapisuje pole magnetyczne')
-    time.sleep(1)
     czas_trwania = datetime.now() - start

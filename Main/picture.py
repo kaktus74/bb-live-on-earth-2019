@@ -24,7 +24,7 @@ def picture (lat, lon):
     fname = '{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon)
     cam.capture(fname)
     print('Zapisalem zdjecie pod nazwa {0}'.format(fname))
-    sleep(23)
+    sleep(2)
 
 l = 0
 
