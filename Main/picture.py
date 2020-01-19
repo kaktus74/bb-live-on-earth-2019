@@ -21,6 +21,7 @@ sleep(3)
 def picture (lat, lon):
     t = datetime.now()
     cam.exif_tags['IFD0.Copyright'] = "Black_Boxes"
+    
     fname = '{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon)
     cam.capture(fname)
     print('Zapisalem zdjecie pod nazwa {0}'.format(fname))
