@@ -21,9 +21,8 @@ sleep(3)
 def picture (lat, lon):
     t = datetime.now()
     cam.exif_tags['IFD0.Copyright'] = "Black_Boxes"
-
-    // 123/1 23/1 2345/10
-    // N
+    #todo:
+    #cam.exif_tags['GPS..... = 'lat/lon jako napis w formacie exif'
     
     fname = '{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon)
     cam.capture(fname)

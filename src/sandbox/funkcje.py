@@ -5,11 +5,12 @@
 #print(odejmuj(b=12,a=34))
 
 def na_ulamki(x):
+    x [0] = abs (x[0])
     x = [str(i) for i in x]
     x [0] += '/1'
     x [1] += '/1'
     x [2] += '/10'
-    " ".join(x)
-    return x
+    napis = x[0] + ' ' + x[1] + ' ' + x[2]
+    return napis
 
 x = [6 ,8 ,9.5]
