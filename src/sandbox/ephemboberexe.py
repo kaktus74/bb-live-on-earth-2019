@@ -39,14 +39,14 @@ def angle2exifRef(issAngle, directions):
     else:
         return directions [1]
 
-# zakladamy ze stopnie i minuty sa zawsze calkowite
-# issLon, np. '14:45:12.4' -> '14/1 45/1 124/10'
+
 def angle2exif(issLon):
     isssublong = str(issLon).split(':')
     isssublong = [float(i) for i in isssublong]
     return na_ulamki (isssublong)
     
-
+# zakladamy ze stopnie i minuty sa zawsze calkowite
+# issLon, np. '14:45:12.4' -> '14/1 45/1 124/10'
 
 ##def angle2exifLatRef(x):
 ##    issLatstr = str(issLatAngle).split(':')
