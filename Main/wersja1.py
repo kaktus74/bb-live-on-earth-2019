@@ -122,4 +122,3 @@ with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
         czas_trwania = datetime.now() - start
         time.sleep (interval)
 
-
