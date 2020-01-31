@@ -6,6 +6,7 @@ from picamera import PiCamera
 import time
 import ephem
 from sense_hat import SenseHat
+import csv
 sense = SenseHat ()
 
 def tales (h1, p1, h2 = 400000):
@@ -97,7 +98,6 @@ print (my_dir)
 
 compass = sense.compass_raw
 
-flight_duration = 15
 
 cam =  PiCamera()
 cam.start_preview()
@@ -108,18 +108,18 @@ iss.compute(t)
 picture (iss.sublat, iss.sublong)
 
 czas_trwania = datetime.now() - start
-def main_function ():
-    with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
-        writer = csv.writer(f)
-        header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
-        writer.writerow (header)
-        while czas_trwania.total_seconds () < flight_duration:
-            print('Obliczam pozycje i zapisuje razem ze zdjeciem')
-            picture (iss.sublat, iss.sublong)
-            print('Zapisuje pole magnetyczne')
-            row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']]
-            writer.writerow (row)
-            czas_trwania = datetime.now() - start
-            time.sleep (interval)
-    
+
+with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
+    writer = csv.writer(f)
+    header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
+    writer.writerow (header)
+    while czas_trwania.total_seconds () < flight_duration:
+        print('Obliczam pozycje i zapisuje razem ze zdjeciem')
+        picture (iss.sublat, iss.sublong)
+        print('Zapisuje pole magnetyczne')
+        row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']]
+        writer.writerow (row)
+        czas_trwania = datetime.now() - start
+        time.sleep (interval)
+
 
