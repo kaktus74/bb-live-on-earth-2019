@@ -4,7 +4,8 @@ from os.path import split
 from os.path import isdir
 from picamera import PiCamera
 import time
-import ephem
+from ephem import readtle, degree
+#import reverse_geocoder as rg
 from sense_hat import SenseHat
 import csv
 sense=SenseHat()
@@ -13,7 +14,7 @@ name = 'ISS (ZARYA)'
 line1='1 25544U 98067A   20014.55106447  .00001081  00000-0  27319-4 0  9995'
 line2='2 25544  51.6449  33.6082 0005001 130.1836   8.0955 15.49563139208048'
 # dane do obliczenia pozycji
-iss = ephem.readtle(name, line1, line2)
+iss = readtle(name, line1, line2)
 
 def tales (h1, p1, h2 = 400000):
     p2 = p1 * (h2 / h1)
@@ -81,34 +82,36 @@ czas_trwania = datetime.now() - start
 my_dir = split (__file__)
 my_dir = list (my_dir [:-1])
 my_dir = '/'.join ([str (i) for i in my_dir])
-my_dir = my_dir + '/../data'
+my_dir = my_dir + '/data'
 
 if isdir (my_dir) == False:
     os.mkdir (my_dir)
 print (__file__)
 print (my_dir)
 
-cam =  PiCamera()
-cam.start_preview()
-
 t = datetime.now(timezone.utc)
 iss.compute(t)
 
-picture (iss.sublat, iss.sublong)
-
-#czas_trwania = datetime.now() - start
-
-#compass = sense.get_compass_raw ()
-with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
-    writer = csv.writer(f)
-    header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
-    writer.writerow (header)
-    while czas_trwania.total_seconds () < flight_duration:
-        compass = sense.compass_raw
-        print('Obliczam pozycje i zapisuje razem ze zdjeciem')
-        picture (iss.sublat, iss.sublong)
-        print('Zapisuje pole magnetyczne')
-        row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
-        writer.writerow (row)
-        czas_trwania = datetime.now() - start
-        time.sleep (interval)
+cam =  PiCamera()
+cam.start_preview()
+try:
+    with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
+        writer = csv.writer(f)
+        header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
+        writer.writerow (header)
+        while czas_trwania.total_seconds () < flight_duration:
+            compass = sense.compass_raw
+            print('Obliczam pozycje i zapisuje razem ze zdjeciem')
+            picture (iss.sublat, iss.sublong)
+           #pos = (iss.sublat/degree, iss.sublong/degree)
+            #location = rg.search(pos)
+            print('Zapisuje pole magnetyczne')
+            row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
+            writer.writerow (row)
+            #print ('Jestesmy nad', location)
+            czas_trwania = datetime.now() - start
+            time.sleep (interval)
+finally:
+    print('stopping camera')
+    cam.stop_preview()
+    
