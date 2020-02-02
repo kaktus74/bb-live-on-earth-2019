@@ -5,8 +5,9 @@ from os.path import isdir
 from picamera import PiCamera
 import time
 import ephem
-from sense_hat import SenseHat as sense
+from sense_hat import SenseHat
 import csv
+sense=SenseHat()
 
 name = 'ISS (ZARYA)'
 line1='1 25544U 98067A   20014.55106447  .00001081  00000-0  27319-4 0  9995'
@@ -97,16 +98,17 @@ picture (iss.sublat, iss.sublong)
 
 #czas_trwania = datetime.now() - start
 
-compass = sense.compass_raw
+#compass = sense.get_compass_raw ()
 with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
     writer = csv.writer(f)
     header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
     writer.writerow (header)
     while czas_trwania.total_seconds () < flight_duration:
+        compass = sense.compass_raw
         print('Obliczam pozycje i zapisuje razem ze zdjeciem')
         picture (iss.sublat, iss.sublong)
         print('Zapisuje pole magnetyczne')
-        row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']]
+        row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
         writer.writerow (row)
         czas_trwania = datetime.now() - start
         time.sleep (interval)
