@@ -55,13 +55,13 @@ def angle2exif(issLon):
     isssublong = [float(i) for i in isssublong]
     return na_ulamki (isssublong)
 
-def picture (lat, lon):
+def picture (lat, lon, mydir):
     cam.exif_tags['IFD0.Copyright'] = "Black_Boxes"
     cam.exif_tags['GPS.GPSLatitudeRef'] = angle2exifRef(iss.sublat, ['S', 'N'])
     cam.exif_tags['GPS.GPSLatitude'] = angle2exif(iss.sublat)
     cam.exif_tags['GPS.GPSLongitudeRef'] = angle2exifRef (iss.sublong, ['W', 'E'])
     cam.exif_tags['GPS.GPSLongitude'] = angle2exif (iss.sublong) 
-    fname = '{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon)
+    fname = '{3}/{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon, mydir)
     cam.capture(fname)
     print('Zapisalem zdjecie pod nazwa {0}'.format(fname))
 
@@ -81,6 +81,8 @@ czas_trwania = datetime.now() - start
 
 my_dir = split (__file__)
 my_dir = list (my_dir [:-1])
+if my_dir [0] == '':
+    my_dir [0] = '.'
 my_dir = '/'.join ([str (i) for i in my_dir])
 my_dir = my_dir + '/data'
 
@@ -102,7 +104,7 @@ try:
         while czas_trwania.total_seconds () < flight_duration:
             compass = sense.compass_raw
             print('Obliczam pozycje i zapisuje razem ze zdjeciem')
-            picture (iss.sublat, iss.sublong)
+            picture (iss.sublat, iss.sublong, my_dir)
            #pos = (iss.sublat/degree, iss.sublong/degree)
             #location = rg.search(pos)
             print('Zapisuje pole magnetyczne')

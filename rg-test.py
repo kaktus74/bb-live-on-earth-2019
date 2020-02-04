@@ -9,6 +9,7 @@ iss = readtle(name, line1, line2)
 t = datetime.now(timezone.utc)
 iss.compute(t)
 pos = (iss.sublat/degree, iss.sublong/degree)
-location = rg.search(pos)
-print(location)
+while True:
+    location = rg.search(pos, mode=1)
+    print(location)
     
