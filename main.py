@@ -5,9 +5,10 @@ from os.path import isdir
 from picamera import PiCamera
 import time
 from ephem import readtle, degree
-#import reverse_geocoder as rg
 from sense_hat import SenseHat
 import csv
+from logzero import logger, logfile
+import reverse_geocoder as rg
 sense=SenseHat()
 
 name = 'ISS (ZARYA)'
@@ -63,7 +64,12 @@ def picture (lat, lon, mydir):
     cam.exif_tags['GPS.GPSLongitude'] = angle2exif (iss.sublong) 
     fname = '{3}/{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon, mydir)
     cam.capture(fname)
-    print('Zapisalem zdjecie pod nazwa {0}'.format(fname))
+    logger.info('Zapisalem zdjecie pod nazwa {0}'.format(fname))
+
+def place ():
+    pos = (iss.sublat / degree, iss.sublong / degree)
+    location = rg.search(pos,mode=1)
+    return location
 
 
 start = datetime.now()
@@ -88,32 +94,39 @@ my_dir = my_dir + '/data'
 
 if isdir (my_dir) == False:
     os.mkdir (my_dir)
-print (__file__)
-print (my_dir)
+logger.info (__file__)
+logger.info (my_dir)
 
 t = datetime.now(timezone.utc)
 iss.compute(t)
 
-cam =  PiCamera()
+logfile(my_dir + "/rotating-logfile.log")
+logger.info('To powinno isc do pliku')
+logger.info("{0} To jest interval".format(interval))
+cam = PiCamera()
 cam.start_preview()
+logger.info("{0} To jest interval".format(interval))
 try:
     with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
         writer = csv.writer(f)
         header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
         writer.writerow (header)
         while czas_trwania.total_seconds () < flight_duration:
-            compass = sense.compass_raw
-            print('Obliczam pozycje i zapisuje razem ze zdjeciem')
-            picture (iss.sublat, iss.sublong, my_dir)
+            try:
+                compass = sense.compass_raw
+                logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
+                picture (iss.sublat, iss.sublong, my_dir)
            #pos = (iss.sublat/degree, iss.sublong/degree)
             #location = rg.search(pos)
-            print('Zapisuje pole magnetyczne')
-            row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
-            writer.writerow (row)
-            #print ('Jestesmy nad', location)
-            czas_trwania = datetime.now() - start
-            time.sleep (interval)
+                logger.info('Zapisuje pole magnetyczne')
+                row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
+                writer.writerow (row)
+                logger.info ('Jestesmy nad {0}'.format (place()))
+                czas_trwania = datetime.now() - start
+                time.sleep (interval)
+            except Exception as bum:
+                logger.exception(bum)
 finally:
-    print('stopping camera')
+    logger.info('stopping camera')
     cam.stop_preview()
     
