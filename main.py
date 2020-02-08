@@ -74,7 +74,7 @@ def place ():
 def pixel1 ():
     x = [255, 10, 10]
     y = [10, 10, 255]
-    z = [255, 255, 60]
+    z = [255, 255, 175]
     obrazek1 = [
         z, z, x, z, z, x, z, z,
         z, z, z, z, z, z, z, z,
@@ -100,6 +100,22 @@ def pixel2 ():
         y, y, y, y, y, y, y, y
         ]
     sense.set_pixels(obrazek2)
+
+def pixel3 ():
+    x = [30, 255, 30]
+    y = [255, 30, 30]
+    z = [170, 170, 255]
+    obrazek3 = [
+        z, z, z, z, z, z, z, z,
+        z, z, x, x, z, z, z, z,
+        z, y, z, z, x, z, z, z,
+        z, z, z, z, x, z, z, z,
+        z, z, z, x, z, z, z, z,
+        z, z, x, z, z, z, z, z,
+        z, z, x, z, z, z, z, x,
+        z, z, z, x, x, x, x, z,
+        ]
+    sense.set_pixels(obrazek3)
 
 start = datetime.now()
 # czas startu
@@ -146,9 +162,12 @@ try:
                 if pixels == 0:
                     pixel2()
                     pixels = pixels + 1
-                else:
+                elif pixels == 1:
                     pixel1()
-                    pixels = pixels -1
+                    pixels = pixels +1
+                else:
+                    pixel3()
+                    pixels = pixels -2
                 compass = sense.compass_raw
                 logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
                 picture (iss.sublat, iss.sublong, my_dir)
