@@ -117,6 +117,21 @@ def pixel3 ():
         ]
     sense.set_pixels(obrazek3)
 
+def pixel4 ():
+    y = [1, 1, 80]
+    x = [255, 255, 80]
+    obrazek4 = [
+        y, y, y, x, y, y, x, x,
+        y, x, y, y, y, x, y, x,
+        x, y, y, y, y, y, y, y,
+        y, y, y, x, y, y, x, y,
+        y, x, y, y, y, y, y, x,
+        y, y, y, y, y, y, x, y,
+        y, y, x, y, x, y, y, y,
+        x, y, y, y, y, y, x, y
+        ]
+    sense.set_pixels(obrazek4)
+
 start = datetime.now()
 # czas startu
 
@@ -126,7 +141,7 @@ measured_fov = 0.225
 interval = co_ile (dl_maly_bok (tales (measured_distance, measured_fov))) / 2
 
 #flight_duration = 180*60
-flight_duration = 30
+flight_duration = 40
 
 czas_trwania = datetime.now() - start
 
@@ -163,11 +178,14 @@ try:
                     pixel2()
                     pixels = pixels + 1
                 elif pixels == 1:
+                    pixel3()
+                    pixels = pixels +1
+                elif pixels == 2:
                     pixel1()
                     pixels = pixels +1
                 else:
-                    pixel3()
-                    pixels = pixels -2
+                    pixel4()
+                    pixels = pixels -3
                 compass = sense.compass_raw
                 logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
                 picture (iss.sublat, iss.sublong, my_dir)
