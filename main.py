@@ -141,7 +141,7 @@ measured_fov = 0.225
 interval = co_ile (dl_maly_bok (tales (measured_distance, measured_fov))) / 2
 
 #flight_duration = 180*60
-flight_duration = 40
+flight_duration = 10800
 
 czas_trwania = datetime.now() - start
 
