@@ -71,6 +71,35 @@ def place ():
     location = rg.search(pos,mode=1)
     return location
 
+def pixel1 ():
+    x = [255, 10, 10]
+    y = [10, 10, 255]
+    z = [255, 255, 60]
+    obrazek1 = [
+        z, z, x, z, z, x, z, z,
+        z, z, z, z, z, z, z, z,
+        z, z, z, z, z, z, z, z,
+        z, z, z, z, z, z, z, z,
+        z, z, z, z, z, z, z, z,
+        z, z, z, z, z, z, z, z,
+        z, z, y, z, z, y, z, z,
+        z, z, z, y, y, z, z, z]
+    sense.set_pixels(obrazek1)
+
+def pixel2 ():
+    x = [1, 1, 1]
+    y = [255, 255, 255]
+    obrazek2 = [
+        y, y, y, y, y, y, y, y,
+        y, y, y, y, y, y, y, y,
+        y, y, y, y, y, y, y, y,
+        y, x, x, x, x, x, x, y,
+        x, y, x, x, x, x, y, x,
+        y, y, x, x, x, x, y, y,
+        y, y, x, x, x, x, y, y,
+        y, y, y, y, y, y, y, y
+        ]
+    sense.set_pixels(obrazek2)
 
 start = datetime.now()
 # czas startu
@@ -81,7 +110,7 @@ measured_fov = 0.225
 interval = co_ile (dl_maly_bok (tales (measured_distance, measured_fov))) / 2
 
 #flight_duration = 180*60
-flight_duration = 15
+flight_duration = 30
 
 czas_trwania = datetime.now() - start
 
@@ -99,20 +128,27 @@ logger.info (my_dir)
 
 t = datetime.now(timezone.utc)
 iss.compute(t)
-
 logfile(my_dir + "/rotating-logfile.log")
 logger.info('To powinno isc do pliku')
 logger.info("{0} To jest interval".format(interval))
 cam = PiCamera()
 cam.start_preview()
 logger.info("{0} To jest interval".format(interval))
+pixels = 0
 try:
     with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
         writer = csv.writer(f)
         header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
         writer.writerow (header)
+        sense.clear()
         while czas_trwania.total_seconds () < flight_duration:
             try:
+                if pixels == 0:
+                    pixel2()
+                    pixels = pixels + 1
+                else:
+                    pixel1()
+                    pixels = pixels -1
                 compass = sense.compass_raw
                 logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
                 picture (iss.sublat, iss.sublong, my_dir)
@@ -120,10 +156,11 @@ try:
                 row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
                 writer.writerow (row)
                 logger.info ('Jestesmy nad {0}'.format (place()))
-                czas_trwania = datetime.now() - start
                 time.sleep (interval)
             except Exception as bum:
                 logger.exception(bum)
+            finally:
+                czas_trwania = datetime.now() - start
 finally:
     logger.info('stopping camera')
     cam.stop_preview()
