@@ -17,7 +17,7 @@ line2='2 25544  51.6449  33.6082 0005001 130.1836   8.0955 15.49563139208048'
 # dane do obliczenia pozycji
 iss = readtle(name, line1, line2)
 
-def tales (h1, p1, h2 = 400000):
+def tales (h1, p1, h2 = 408000):
     p2 = p1 * (h2 / h1)
     return p2
 
@@ -116,8 +116,6 @@ try:
                 compass = sense.compass_raw
                 logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
                 picture (iss.sublat, iss.sublong, my_dir)
-           #pos = (iss.sublat/degree, iss.sublong/degree)
-            #location = rg.search(pos)
                 logger.info('Zapisuje pole magnetyczne')
                 row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
                 writer.writerow (row)
