@@ -160,7 +160,7 @@ logger.info (my_dir)
 
 t = datetime.now(timezone.utc)
 iss.compute(t)
-logfile(my_dir + "/rotating-logfile.log")
+logfile(my_dir + "BlackBoxes.log")
 logger.info('To powinno isc do pliku')
 logger.info("{0} To jest interval".format(interval))
 cam = PiCamera()
@@ -168,7 +168,7 @@ cam.start_preview()
 logger.info("{0} To jest interval".format(interval))
 pixels = 0
 try:
-    with open('{0}/magnetic_field.txt'.format (my_dir), 'w') as f:
+    with open('{0}data01.csv'.format (my_dir), 'w') as f:
         writer = csv.writer(f)
         header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
         writer.writerow (header)
