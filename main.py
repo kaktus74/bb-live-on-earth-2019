@@ -17,6 +17,8 @@ line2='2 25544  51.6449  33.6082 0005001 130.1836   8.0955 15.49563139208048'
 # dane do obliczenia pozycji
 iss = readtle(name, line1, line2)
 
+flight_duration = 30 #10800
+
 def tales (h1, p1, h2 = 408000):
     p2 = p1 * (h2 / h1)
     return p2
@@ -56,13 +58,14 @@ def angle2exif(issLon):
     isssublong = [float(i) for i in isssublong]
     return na_ulamki (isssublong)
 
-def picture (lat, lon, mydir):
+def picture (lat, lon, mydir, imgnr):
     cam.exif_tags['IFD0.Copyright'] = "Black_Boxes"
     cam.exif_tags['GPS.GPSLatitudeRef'] = angle2exifRef(iss.sublat, ['S', 'N'])
     cam.exif_tags['GPS.GPSLatitude'] = angle2exif(iss.sublat)
     cam.exif_tags['GPS.GPSLongitudeRef'] = angle2exifRef (iss.sublong, ['W', 'E'])
     cam.exif_tags['GPS.GPSLongitude'] = angle2exif (iss.sublong) 
-    fname = '{3}/{0},{1},{2}-Iss.jpg'.format(datetime.now(), lat, lon, mydir)
+    fname = '{1}image_{0}.jpg'.format (str(imgnr).zfill(4), mydir)
+    logger.info('Zapisuje zdjecie pod nazwa {0}'.format(fname))
     cam.capture(fname)
     logger.info('Zapisalem zdjecie pod nazwa {0}'.format(fname))
 
@@ -140,8 +143,6 @@ measured_fov = 0.225
 
 interval = co_ile (dl_maly_bok (tales (measured_distance, measured_fov))) / 2
 
-#flight_duration = 180*60
-flight_duration = 10800
 
 czas_trwania = datetime.now() - start
 
@@ -150,7 +151,7 @@ my_dir = list (my_dir [:-1])
 if my_dir [0] == '':
     my_dir [0] = '.'
 my_dir = '/'.join ([str (i) for i in my_dir])
-my_dir = my_dir + '/data'
+my_dir = my_dir + '/'
 
 if isdir (my_dir) == False:
     os.mkdir (my_dir)
@@ -172,6 +173,7 @@ try:
         header = ['Date/Time', 'Compass X', 'Compass Y', 'Compass Z']
         writer.writerow (header)
         sense.clear()
+        imgnr = 1
         while czas_trwania.total_seconds () < flight_duration:
             try:
                 if pixels == 0:
@@ -188,7 +190,8 @@ try:
                     pixels = pixels -3
                 compass = sense.compass_raw
                 logger.info('Obliczam pozycje i zapisuje razem ze zdjeciem')
-                picture (iss.sublat, iss.sublong, my_dir)
+                picture (iss.sublat, iss.sublong, my_dir, imgnr)
+                imgnr +=1
                 logger.info('Zapisuje pole magnetyczne')
                 row = [datetime.now(), compass ['x'], compass ['y'], compass ['z']] 
                 writer.writerow (row)
