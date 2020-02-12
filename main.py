@@ -201,4 +201,4 @@ try:
 finally:
     logger.info('stopping camera')
     cam.stop_preview()
-    
+    sense.clear()
